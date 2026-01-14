@@ -1,0 +1,32 @@
+<div
+  class="group relative flex flex-col overflow-hidden rounded-xs
+         bg-third transition-colors duration-300
+         hover:bg-white/10 hover:cursor-pointer
+         aspect-[3/4] sm:aspect-[2/3] md:aspect-[3/4]">
+
+  <div class="flex-1 overflow-hidden">
+    <img
+      [src]="image()"
+      [alt]="title()"
+      loading="lazy"
+      class="h-full w-full object-cover"/>
+  </div>
+
+  <div
+    pTooltip="{{ title() }}"
+    showDelay="500"
+    [pt]="ClassicTooltipPt.config"
+    tooltipPosition="bottom"
+    class="flex items-center justify-center
+           px-2 py-2 sm:px-3 sm:py-2.5
+           bg-third transition-colors duration-300
+           group-hover:bg-white/10">
+    <span
+      class="w-full text-start truncate leading-tight
+             text-xs sm:text-sm lg:text-base"
+    >
+      {{ title() }}
+    </span>
+  </div>
+
+</div>

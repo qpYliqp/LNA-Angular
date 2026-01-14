@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+
+  :root {
+    --p-primary-color: var(--color-primary);
+    /*--p-primary-hover-color: var(--color-secondary);*/
+    /*--p-stepper-separator-active-background: white;*/
+    /*--p-stepper-separator-background: var(--color-secondary);*/
+    /*--p-stepper-steppanel-background: var(--color-primary);*/
+    /*--swiper-navigation-color: white;*/
+    /*--p-tooltip-background: var(--color-third);*/
+    /*--p-multiselect-background: var(--color-third);*/
+    /*--p-select-background: var(--color-third);*/
+    /*--p-checkbox-background: var(--color-third);*/
+    /*--p-checkbox-checked-background: var(--color-secondary);*/
+    /*--p-datepicker-panel-border-color: var(--color-secondary);*/
+    /*--p-datepicker-today-background: var(--color-third);*/
+    /*--p-floatlabel-on-active-background: var(--color-fourth);*/
+  }
+
+  @theme
+  {
+    --color-primary: #222222;
+    --color-secondary: #444444;
+    /*--color-primary-opacity: rgba(0, 0, 0, 0.3);*/
+    /*--color-secondary: #737373;*/
+    --color-third: #111111;
+    --color-fourth: oklch(100% 0 0 / 10%);
+    --color-fifth: #2E2E2E;
+    --color-l-red: #CC1F3F;
+    --breakpoint-3xl: 160rem;
+    /*!*2E2F2B*!*/
+    /*--color-error: #dc3545;*/
+    /*--color-white: oklch(1 0 0);*/
+    /*--breakpoint-3xl: 128rem;*/
+
+    /*--breakpoint-4xl: 200rem;*/
+
+  }
+
+body {
+  @apply text-white bg-primary w-screen h-screen m-0 p-0;
+}
+
+@layer utilities {
+  html {
+    scrollbar-width: thin;
+    scrollbar-color: #333333 transparent;
+  }
+
+  ::-webkit-scrollbar {
+    @apply w-1 h-2;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-secondary;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-400/50 hover:bg-gray-400 rounded-full border-15 border-transparent;
+    background-clip: content-box;
+  }
+}
+
+
+
+

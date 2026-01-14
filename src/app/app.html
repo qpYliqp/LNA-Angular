@@ -1,0 +1,12 @@
+<div class="w-screen h-screen flex flex-col overflow-hidden">
+
+  <app-header></app-header>
+
+  <div class="flex flex-row flex-1 overflow-hidden">
+    <app-sidebar class="lg:block hidden"></app-sidebar>
+    <main class="flex-1 h-full overflow-auto ">
+      <router-outlet />
+    </main>
+  </div>
+
+</div>

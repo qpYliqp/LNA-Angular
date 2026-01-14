@@ -1,0 +1,31 @@
+@for(section of sections(); track section.title; let idx = $index) {
+  <h2 class="p-5">{{section.title}}</h2>
+
+  <div class="flex items-center w-full">
+
+    <div class="w-12 flex justify-center shrink-0">
+      <button #prevBtn class="text-white w-20 hover:cursor-pointer">
+        <i class="pi pi-chevron-left text-3xl"></i>
+      </button>
+    </div>
+
+    <div #splideElement class="splide flex-1 min-w-0">
+      <div class="splide__track">
+        <ul class="splide__list">
+          @for(item of section.items; track $index) {
+            <li class="splide__slide hover:scale-102 duration-300">
+              <title-overview-card [title]="'Item ' + item" image="/assets/mock/bs1.jpg"></title-overview-card>
+            </li>
+          }
+        </ul>
+      </div>
+    </div>
+
+    <div class="w-12 flex justify-center shrink-0">
+      <button #nextBtn class="text-white hover:cursor-pointer">
+        <i class="pi pi-chevron-right text-3xl"></i>
+      </button>
+    </div>
+
+  </div>
+}
