@@ -8,7 +8,7 @@ import {catchError, Observable, tap, throwError} from 'rxjs';
 export class ApiHttpService {
 
   private _httpClient = inject(HttpClient);
-  private _baseUrl: string = "";
+  private _baseUrl: string = "https://localhost:7001/";
 
 
   get<T>(url: string, displayToast: boolean = false): Observable<T> {

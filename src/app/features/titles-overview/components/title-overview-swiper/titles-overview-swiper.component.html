@@ -1,5 +1,5 @@
-@for(section of sections(); track section.title; let idx = $index) {
-  <h2 class="p-5">{{section.title}}</h2>
+@for(section of sections(); track section.letter + $index; let idx = $index) {
+  <h2 class="p-5">{{section.letter}}</h2>
 
   <div class="flex items-center w-full">
 
@@ -12,9 +12,9 @@
     <div #splideElement class="splide flex-1 min-w-0">
       <div class="splide__track">
         <ul class="splide__list">
-          @for(item of section.items; track $index) {
-            <li class="splide__slide hover:scale-102 duration-300">
-              <title-overview-card [title]="'Item ' + item" image="/assets/mock/bs1.jpg"></title-overview-card>
+          @for(book of section.books; track $index) {
+            <li class="splide__slide">
+              <title-overview-card [book]="book" ]></title-overview-card>
             </li>
           }
         </ul>

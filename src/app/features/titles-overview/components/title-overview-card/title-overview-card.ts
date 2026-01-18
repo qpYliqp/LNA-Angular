@@ -1,6 +1,7 @@
 import {Component, input} from '@angular/core';
 import {Tooltip} from 'primeng/tooltip';
 import {ClassicTooltipPt} from '../../../../shared/prime-ng/tooltip/classic-tooltip.pt';
+import {BookPreview} from '../../../../shared/models/BookPreview';
 
 @Component({
   selector: 'title-overview-card',
@@ -12,8 +13,7 @@ import {ClassicTooltipPt} from '../../../../shared/prime-ng/tooltip/classic-tool
 })
 export class TitleOverviewCard {
 
-  title = input<string>('title');
-  image = input<string>('/assets/mock/bs1.jpg');
+  book = input.required<BookPreview>();
 
   protected readonly ClassicTooltipPt = ClassicTooltipPt;
 }

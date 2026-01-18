@@ -1,32 +1,29 @@
-<div
-  class="group relative flex flex-col overflow-hidden rounded-xs
-         bg-third transition-colors duration-300
-         hover:bg-white/10 hover:cursor-pointer
-         aspect-[3/4] sm:aspect-[2/3] md:aspect-[3/4]">
+<div class="group cursor-pointer">
 
-  <div class="flex-1 overflow-hidden">
-    <img
-      [src]="image()"
-      [alt]="title()"
-      loading="lazy"
-      class="h-full w-full object-cover"/>
+  <div class="overflow-hidden bg-third aspect-[3/4] sm:aspect-[2/3] md:aspect-[3/4]">
+    @if (book().coverUrl) {
+      <img
+        [src]="book().coverUrl"
+        [alt]="book().title"
+        loading="lazy"
+        class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-103">
+    } @else {
+      <div class="w-full h-full flex items-center justify-center flex-col text-center text-sm text-secondary ">
+        <i class="pi pi-image text-4xl"></i>
+        <p>Couverture indisponible</p>
+      </div>
+    }
   </div>
 
   <div
-    pTooltip="{{ title() }}"
-    showDelay="500"
+    pTooltip="{{ book().title }}"
+    showDelay="300"
     [pt]="ClassicTooltipPt.config"
     tooltipPosition="bottom"
-    class="flex items-center justify-center
-           px-2 py-2 sm:px-3 sm:py-2.5
-           bg-third transition-colors duration-300
-           group-hover:bg-white/10">
-    <span
-      class="w-full text-start truncate leading-tight
-             text-xs sm:text-sm lg:text-base"
-    >
-      {{ title() }}
-    </span>
+    class="border-secondary border-t-3 p-2 bg-third group-hover:bg-fifth flex items-center justify-between gap-2">
+    <p class="text-sm font-normal truncate leading-snug flex-1">
+      {{ book().title }}
+    </p>
+    <i class="pi pi-chevron-right text-xs opacity-0 group-hover:opacity-50 transition-opacity duration-300 shrink-0"></i>
   </div>
-
 </div>

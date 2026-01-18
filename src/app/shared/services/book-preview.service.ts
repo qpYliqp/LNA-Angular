@@ -9,7 +9,7 @@ export class BookPreviewService {
   api = inject(ApiHttpService);
   books = signal<BookPreview[]>([]);
 
-  private baseUrl: string = "/api/books/preview";
+  private baseUrl: string = "books/preview";
 
   getAllPreviewBooks()
   {
@@ -18,8 +18,8 @@ export class BookPreviewService {
         map((jsonItems) => {
           return jsonItems.map(item => ({
             id: item.id,
-            title: item.Title,
-            bookUrl: item.bookUrl,
+            title: item.title,
+            coverUrl: item.coverUrl,
           } as BookPreview));
         })
       ).subscribe({

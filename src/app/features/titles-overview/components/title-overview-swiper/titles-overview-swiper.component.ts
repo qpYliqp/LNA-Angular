@@ -1,6 +1,7 @@
 import {AfterViewInit, Component, ElementRef, input, OnDestroy, QueryList, ViewChildren} from '@angular/core';
 import {TitleOverviewCard} from "../title-overview-card/title-overview-card";
 import Splide from '@splidejs/splide';
+import {BookSection} from '../../services/titles-overview.service';
 
 @Component({
   selector: 'title-overview-swiper-component',
@@ -12,7 +13,7 @@ import Splide from '@splidejs/splide';
 })
 export class TitlesOverviewSwiperComponent implements AfterViewInit, OnDestroy {
 
-  sections = input.required<{title:string,items : number[]}[]>()
+  sections = input.required<BookSection[]>()
 
   @ViewChildren('splideElement') splideElements!: QueryList<ElementRef>;
   @ViewChildren('prevBtn') prevBtns!: QueryList<ElementRef>;
