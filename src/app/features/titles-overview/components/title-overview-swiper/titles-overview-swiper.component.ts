@@ -1,5 +1,5 @@
 import {AfterViewInit, Component, ElementRef, input, OnDestroy, QueryList, ViewChildren} from '@angular/core';
-import {TitleOverviewCard} from "../../title-overview-card/title-overview-card";
+import {TitleOverviewCard} from "../title-overview-card/title-overview-card";
 import Splide from '@splidejs/splide';
 
 @Component({

@@ -4,7 +4,7 @@ import Splide from '@splidejs/splide';
 import {ClassicButtonComponent} from '../../shared/prime-ng/buttons/classic-button/classic-button.component';
 import {
   TitlesOverviewSwiperComponent
-} from './components/title-overview-swiper/title-overview-swiper-component/titles-overview-swiper.component';
+} from './components/title-overview-swiper/titles-overview-swiper.component';
 
 @Component({
   selector: 'app-titles-overview',
