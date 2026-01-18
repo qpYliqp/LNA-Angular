@@ -1,31 +1,38 @@
-@for(section of sections(); track section.letter + $index; let idx = $index) {
-  <h2 class="p-5">{{section.letter}}</h2>
-
-  <div class="flex items-center w-full">
-
-    <div class="w-12 flex justify-center shrink-0">
-      <button #prevBtn class="text-white w-20 hover:cursor-pointer">
-        <i class="pi pi-chevron-left text-3xl"></i>
-      </button>
-    </div>
-
-    <div #splideElement class="splide flex-1 min-w-0">
-      <div class="splide__track">
-        <ul class="splide__list">
-          @for(book of section.books; track $index) {
-            <li class="splide__slide">
-              <title-overview-card [book]="book" ]></title-overview-card>
-            </li>
-          }
-        </ul>
+  @for(section of sections(); track section.letter + $index; let idx = $index) {
+    <div class="px-5 mb-6 pt-8">
+      <div class="flex items-center gap-4">
+        <h2 class="bg-neutral-900 text-white text-xl font-bold px-4 py-1 shadow-sm select-none">
+          {{section.letter}}
+        </h2>
+        <div class="h-px flex-1 bg-secondary"></div>
       </div>
     </div>
 
-    <div class="w-12 flex justify-center shrink-0">
-      <button #nextBtn class="text-white hover:cursor-pointer">
-        <i class="pi pi-chevron-right text-3xl"></i>
-      </button>
-    </div>
+    <div class="flex items-center w-full my-5">
 
-  </div>
-}
+      <div class="w-12 flex justify-center shrink-0">
+        <button #prevBtn class="text-white w-20 hover:cursor-pointer">
+          <i class="pi pi-chevron-left text-3xl"></i>
+        </button>
+      </div>
+
+      <div #splideElement class="splide flex-1 min-w-0">
+        <div class="splide__track">
+          <ul class="splide__list">
+            @for(book of section.books; track $index) {
+              <li class="splide__slide">
+                <title-overview-card [book]="book" ]></title-overview-card>
+              </li>
+            }
+          </ul>
+        </div>
+      </div>
+
+      <div class="w-12 flex justify-center shrink-0">
+        <button #nextBtn class="text-white hover:cursor-pointer">
+          <i class="pi pi-chevron-right text-3xl"></i>
+        </button>
+      </div>
+
+    </div>
+  }
