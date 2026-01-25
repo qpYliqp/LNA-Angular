@@ -1,19 +1,19 @@
-import {inject, Injectable, signal, WritableSignal} from '@angular/core';
+import {inject, Injectable, signal} from '@angular/core';
 import {BookPreview} from '../models/BookPreview';
 import {ApiHttpService} from './api-http.service';
-import {finalize, map} from 'rxjs';
+import {map} from 'rxjs';
 
 @Injectable()
 export class BookPreviewService {
 
-  api = inject(ApiHttpService);
+  private _api = inject(ApiHttpService);
   books = signal<BookPreview[]>([]);
 
   private baseUrl: string = "books/preview";
 
   getAllPreviewBooks()
   {
-    this.api.get<any[]>(this.baseUrl, false)
+    this._api.get<any[]>(this.baseUrl, false)
       .pipe(
         map((jsonItems) => {
           return jsonItems.map(item => ({

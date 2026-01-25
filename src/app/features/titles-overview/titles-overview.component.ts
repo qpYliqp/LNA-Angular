@@ -1,15 +1,8 @@
 import {
-  AfterViewInit,
   Component, computed,
-  ElementRef,
   inject,
-  OnDestroy,
-  QueryList, signal,
-  ViewChild,
-  ViewChildren
 } from '@angular/core';
-import {TitleOverviewCard} from './components/title-overview-card/title-overview-card';
-import Splide from '@splidejs/splide';
+
 import {ClassicButtonComponent} from '../../shared/prime-ng/buttons/classic-button/classic-button.component';
 import {
   TitlesOverviewSwiperComponent
@@ -17,12 +10,18 @@ import {
 import {TitlesOverviewService} from './services/titles-overview.service';
 import {BookPreview} from '../../shared/models/BookPreview';
 import {BookPreviewService} from '../../shared/services/book-preview.service';
+import {
+  CreateBookFormComponent
+} from '../../shared/components/forms/create-book.form.component/create-book.form.component';
+import {TitleOverviewCard} from './components/title-overview-card/title-overview-card';
 
 @Component({
   selector: 'app-titles-overview',
   imports: [
     ClassicButtonComponent,
-    TitlesOverviewSwiperComponent
+    TitlesOverviewSwiperComponent,
+    CreateBookFormComponent,
+    TitleOverviewCard
   ],
   providers: [BookPreviewService, TitlesOverviewService],
   templateUrl: './titles-overview.component.html',
@@ -33,6 +32,8 @@ export class TitlesOverviewComponent {
   titlesOverviewService = inject(TitlesOverviewService);
   books = computed(() => this.titlesOverviewService.books());
   booksByLetter = computed(() => this.titlesOverviewService.booksByLetter());
+
+  modal : boolean = false;
   ngOnInit()
   {
     this.titlesOverviewService.loadBooks();
@@ -52,5 +53,9 @@ export class TitlesOverviewComponent {
     this.test = !this.test;
     console.log(this.books());
     console.log(this.booksByLetter());
+  }
+
+  openModal() {
+    this.modal = true;
   }
 }

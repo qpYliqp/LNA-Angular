@@ -1,10 +1,36 @@
+@if(modal)
+{
+  <create-book-form></create-book-form>
+}
+
 <div class="py-5">
   <classic-button [label]="'mamam'" (onClick)="testButton()"></classic-button>
+  <classic-button label="Nouveau Livre" (onClick)="openModal()"></classic-button>
   @if(test)
   {
     <title-overview-swiper-component [sections]="booksByLetter()"></title-overview-swiper-component>
   }
-@else {
-<img src="'/assets/mock/bs1.jpg'"/>
+  @else {
+    <div class="px-5 mb-6 pt-8">
+    <div
+      class="grid
+    grid-cols-[repeat(18,minmax(0,1fr))] gap-[24px]
+      max-[3200px]:grid-cols-[repeat(14,minmax(0,1fr))] max-[3200px]:gap-[24px]
+      max-[2560px]:grid-cols-[repeat(12,minmax(0,1fr))] max-[2560px]:gap-[24px]
+      max-[2048px]:grid-cols-[repeat(10,minmax(0,1fr))] max-[2048px]:gap-[22px]
+      max-[1920px]:grid-cols-[repeat(9,minmax(0,1fr))]  max-[1920px]:gap-[20px]
+      max-[1700px]:grid-cols-[repeat(8,minmax(0,1fr))]  max-[1700px]:gap-[20px]
+      max-[1536px]:grid-cols-[repeat(6,minmax(0,1fr))]  max-[1536px]:gap-[18px]
+      max-[1280px]:grid-cols-[repeat(5,minmax(0,1fr))]  max-[1280px]:gap-[16px]
+      max-[1024px]:grid-cols-[repeat(5,minmax(0,1fr))]  max-[1024px]:gap-[16px]
+      max-[768px]:grid-cols-[repeat(4,minmax(0,1fr))]   max-[768px]:gap-[13px]
+      max-[640px]:grid-cols-[repeat(3,minmax(0,1fr))]   max-[640px]:gap-[12px]
+      max-[480px]:grid-cols-[repeat(2,minmax(0,1fr))]   max-[480px]:gap-[10px]"
+    >
+      @for (book of books(); track book.id) {
+        <title-overview-card class="w-full" [book]="book" />
+      }
+    </div>
+    </div>
   }
 </div>

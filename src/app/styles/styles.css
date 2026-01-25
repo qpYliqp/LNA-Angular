@@ -28,6 +28,10 @@
     --color-fourth: oklch(100% 0 0 / 10%);
     --color-fifth: #2E2E2E;
     --color-l-red: #CC1F3F;
+    --color-red-test: #FFCB00;
+    --color-blue-test: #FFCB00;
+    --color-purple-test: #6A293E;
+    --color-yellow-test: #FFCB00;
     --breakpoint-3xl: 160rem;
     /*!*2E2F2B*!*/
     /*--color-error: #dc3545;*/
@@ -47,6 +51,7 @@ body {
     scrollbar-width: thin;
     scrollbar-color: #333333 transparent;
   }
+
 
   ::-webkit-scrollbar {
     @apply w-1 h-2;

@@ -56,61 +56,82 @@ export class TitlesOverviewSwiperComponent implements AfterViewInit, OnDestroy {
       }
 
       const splideInstance = new Splide(carousel.nativeElement, {
-        perMove: 1,
-        gap: '30px',
+        perPage: 18,
+        perMove: 9,
+        gap: '24px',
         pagination: false,
         arrows: false,
-        perPage: 13,
         autoWidth: false,
+
         breakpoints: {
+          // Écran <= 3200px (prend la config Swiper 2560)
+          3200: {
+            perPage: 14,
+            perMove: 7,
+            gap: '24px'
+          },
+          // Écran <= 2560px (prend la config Swiper 2048)
           2560: {
-            perPage: 11,
-            perMove: 3,
-            gap: '1.5rem'
+            perPage: 12,
+            perMove: 6,
+            gap: '24px'
           },
-          2200: {
+          // Écran <= 2048px (prend la config Swiper 1920)
+          2048: {
             perPage: 10,
-            perMove: 3,
-            gap: '1.5rem'
+            perMove: 5,
+            gap: '22px'
           },
+          // Écran <= 1920px (prend la config Swiper 1700)
           1920: {
             perPage: 9,
-            perMove: 2,
-            gap: '1.25rem'
+            perMove: 4,
+            gap: '20px'
           },
-          1440: {
-            perPage: 7,
-            perMove: 2,
-            gap: '1.25rem'
+          // Écran <= 1700px (prend la config Swiper 1536)
+          1700: {
+            perPage: 8,
+            perMove: 4,
+            gap: '20px'
           },
-          1280: {
+          // Écran <= 1536px (prend la config Swiper 1280)
+          1536: {
             perPage: 6,
-            perMove: 2,
-            gap: '1rem'
+            perMove: 4,
+            gap: '18px'
           },
+          // Écran <= 1280px (prend la config Swiper 1024)
+          1280: {
+            perPage: 5,
+            perMove: 4,
+            gap: '16px'
+          },
+          // Écran <= 1024px (prend la config Swiper 768)
           1024: {
             perPage: 5,
-            perMove: 2,
-            gap: '1rem'
+            perMove: 3,
+            gap: '16px'
           },
+          // Écran <= 768px (prend la config Swiper 640)
           768: {
             perPage: 4,
-            perMove: 1,
-            gap: '0.75rem'
+            perMove: 3,
+            gap: '13px'
           },
+          // Écran <= 640px (prend la config Swiper 480)
           640: {
             perPage: 3,
-            perMove: 1,
-            gap: '0.75rem'
+            perMove: 2,
+            gap: '12px'
           },
+          // Écran <= 480px (prend la config Swiper 0)
           480: {
             perPage: 2,
-            perMove: 1,
-            gap: '0.5rem',
-          },
+            perMove: 2,
+            gap: '10px'
+          }
         }
       });
-
       splideInstance.mount();
       this.splideInstances.push(splideInstance);
 
