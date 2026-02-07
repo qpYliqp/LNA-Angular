@@ -1,6 +1,6 @@
 import {StepPanelPassThrough, StepPanelsPassThrough, StepPassThrough, StepperPassThrough} from 'primeng/types/stepper';
 
-export class ClassicStepper {
+export class ClassicStepperPt {
 
   public static ptStepper : StepperPassThrough =
   {

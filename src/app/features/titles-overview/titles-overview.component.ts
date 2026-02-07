@@ -3,7 +3,7 @@ import {
   inject,
 } from '@angular/core';
 
-import {ClassicButtonComponent} from '../../shared/prime-ng/buttons/classic-button/classic-button.component';
+import {ClassicButtonPt} from '../../shared/prime-ng/buttons/classic-button/classic-button.pt';
 import {
   TitlesOverviewSwiperComponent
 } from './components/title-overview-swiper/titles-overview-swiper.component';
@@ -18,7 +18,7 @@ import {TitleOverviewCard} from './components/title-overview-card/title-overview
 @Component({
   selector: 'app-titles-overview',
   imports: [
-    ClassicButtonComponent,
+    ClassicButtonPt,
     TitlesOverviewSwiperComponent,
     CreateBookFormComponent,
     TitleOverviewCard

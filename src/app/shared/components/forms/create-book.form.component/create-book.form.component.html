@@ -19,7 +19,7 @@
         <p-step-panel [value]="0" [pt]="ClassicStepper.ptStepPanel">
           <ng-template #content let-activateCallback="activateCallback">
             <div class="flex-1 overflow-y-auto w-full flex flex-col items-center justify-start p-2">
-              <book-details-form/>
+              <book-details-form [submitTrigger]="submitSignal" [stepIndex]="0"/>
             </div>
           </ng-template>
         </p-step-panel>

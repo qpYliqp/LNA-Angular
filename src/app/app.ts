@@ -1,7 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import {Button} from 'primeng/button';
-import {ClassicButtonComponent} from './shared/prime-ng/buttons/classic-button/classic-button.component';
+import {ClassicButtonPt} from './shared/prime-ng/buttons/classic-button/classic-button.pt';
 import {HeaderComponent} from './shared/components/header/header.component';
 import {SidebarComponent} from './shared/components/sidebar/sidebar/sidebar.component';
 

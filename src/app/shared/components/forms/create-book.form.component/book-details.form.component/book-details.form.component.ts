@@ -1,13 +1,16 @@
-import {Component, signal} from '@angular/core';
-import {Field, form, FormField, required} from '@angular/forms/signals';
+import {Component, signal, input, inject, DestroyRef, afterNextRender} from '@angular/core';
+import {Field, form, FormField, required, min, pattern} from '@angular/forms/signals';
 import {FloatLabel} from 'primeng/floatlabel';
 import {InputText} from 'primeng/inputtext';
+import {InputTextComponent} from '../../../inputs/input-text.component/input-text.component';
+import {Observable} from 'rxjs';
+import {InputMaskComponent} from '../../../inputs/input-mask.component/input-mask.component';
 
 interface IBookDetailsForm {
   title: string;
   isbn: string;
-  price: number | null;
-  pages: number | null;
+  price: number;
+  pages: number;
   releaseDate: Date | null;
   nuart: string | null;
   coverFile: File | null;
@@ -20,7 +23,9 @@ interface IBookDetailsForm {
     FloatLabel,
     FormField,
     Field,
-    InputText
+    InputText,
+    InputTextComponent,
+    InputMaskComponent
   ],
   templateUrl: './book-details.form.component.html',
   styleUrl: './book-details.form.component.scss',
@@ -32,8 +37,8 @@ export class BookDetailsFormComponent {
   BookDetailsModel = signal<IBookDetailsForm>({
     title: '',
     isbn: '',
-    price : null,
-    pages : null,
+    price : 0,
+    pages : 0,
     releaseDate: null,
     nuart : null,
     coverFile: null,
@@ -43,8 +48,37 @@ export class BookDetailsFormComponent {
   {
     required(schemaPath.title);
     required(schemaPath.isbn);
+    required(schemaPath.pages);
+    required(schemaPath.price);
+    min(schemaPath.price,1);
+    min(schemaPath.pages,1);
   });
 
+  hasSubmitted = false;
+  submitTrigger = input.required<Observable<number>>();
+  stepIndex = input.required<number>();
 
 
-}
+
+  constructor() {
+    const destroyRef = inject(DestroyRef);
+
+    afterNextRender(() => {
+      const sub = this.submitTrigger().subscribe(targetStep => {
+        if (targetStep === this.stepIndex()) {
+          this.onSubmit();
+        }
+      });
+      destroyRef.onDestroy(() => sub.unsubscribe());
+    });
+  }
+
+  public onSubmit(): boolean {
+      this.hasSubmitted = true;
+      return this.hasSubmitted;
+
+  }
+
+
+
+  }

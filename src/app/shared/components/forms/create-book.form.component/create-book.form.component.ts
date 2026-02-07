@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import {Step, StepList, StepPanel, StepPanels, Stepper} from 'primeng/stepper';
 import {Button} from 'primeng/button';
-import {ClassicStepper} from '../../../prime-ng/step-panel/classic-stepper';
-import {ClassicButtonComponent} from '../../../prime-ng/buttons/classic-button/classic-button.component';
+import {ClassicStepperPt} from '../../../prime-ng/step-panel/classic-stepper.pt';
+import {ClassicButtonPt} from '../../../prime-ng/buttons/classic-button/classic-button.pt';
 import {BookDetailsFormComponent} from './book-details.form.component/book-details.form.component';
 import {BookAuthorFormComponent} from './book-author.form.component/book-author.form.component';
+import {Subject} from 'rxjs';
 
 @Component({
   selector: 'create-book-form',
@@ -15,7 +16,7 @@ import {BookAuthorFormComponent} from './book-author.form.component/book-author.
     StepPanels,
     StepPanel,
     Button,
-    ClassicButtonComponent,
+    ClassicButtonPt,
     BookDetailsFormComponent,
     BookAuthorFormComponent
   ],
@@ -25,10 +26,11 @@ import {BookAuthorFormComponent} from './book-author.form.component/book-author.
 export class CreateBookFormComponent {
 
   currentStep: number = 0;
+  submitSignal = new Subject<number>();
 
   next()
   {
-    this.currentStep++;
+    this.submitSignal.next(this.currentStep);
   }
 
   prev()
@@ -37,6 +39,6 @@ export class CreateBookFormComponent {
   }
 
 
-  protected readonly ClassicButtonComponent = ClassicButtonComponent;
-  protected readonly ClassicStepper = ClassicStepper;
+  protected readonly ClassicButtonComponent = ClassicButtonPt;
+  protected readonly ClassicStepper = ClassicStepperPt;
 }

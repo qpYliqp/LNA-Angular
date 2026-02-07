@@ -15,7 +15,7 @@ import {ButtonModule, ButtonPassThrough} from 'primeng/button';
   `,
   styles: []
 })
-export class ClassicButtonComponent {
+export class ClassicButtonPt {
 
   label = input.required<string>();
   onClick = output();
@@ -25,5 +25,5 @@ export class ClassicButtonComponent {
     label: '!font-medium'
   };
 
-  protected readonly buttonPt = ClassicButtonComponent.pt;
+  protected readonly buttonPt = ClassicButtonPt.pt;
 }
