@@ -6,38 +6,17 @@
       <p class="!text-white/50 text-lg">Créer un livre</p>
       <i class="pi text-xl pi-times text-secondary hover:cursor-pointer hover:text-l-red/60"></i>
     </div>
-    <p-stepper [(value)]="currentStep" [pt]="{
-      root: {class:'flex-1 w-full h-full flex flex-col min-h-0'},
-      motion: {disabled: true,duration: 0, appear: false, enter: false}
-    }">
+    <p-stepper [(value)]="currentStep" [pt]="ClassicStepper.ptStepper">
 
       <p-step-list>
-        <p-step [value]="0" [pt]="{
-          root: {class: '!text-primary [&_.p-stepper-separator]:!bg-secondary'},
-          number: {class:'!bg-primary !text-secondary !border-none [[data-p-active=true]_&]:!text-white/50'},
-          title: {class:'!text-secondary [[data-p-active=true]_&]:!text-white/50'}}"
+        <p-step [value]="0" [pt]="ClassicStepper.ptStep"
         >Détails</p-step>
-        <p-step [value]="1" [pt]="{
-          root: {class: '!text-primary [&_.p-stepper-separator]:!bg-secondary'},
-          number: {class:'!bg-primary !text-secondary !border-none [[data-p-active=true]_&]:!text-white/50'},
-          title: {class:'!text-secondary [[data-p-active=true]_&]:!text-white/50'}}">Auteurs</p-step>
+        <p-step [value]="1" [pt]="ClassicStepper.ptStep">Auteurs</p-step>
       </p-step-list>
 
-      <p-step-panels [pt]="{
-          root: { class: 'flex-1 flex flex-col w-full bg-third h-full min-h-0 overflow-hidden relative' }
-        }">
+      <p-step-panels [pt]="ClassicStepper.ptStepPanels">
 
-        <p-step-panel [value]="0" [pt]="{
-          root: {
-            class: ' flex bg-black flex-col h-full w-full min-h-0 [&_.p-motion]:h-full [&_.p-motion]:!bg-third [&_.p-motion]:flex [&_.p-motion]:flex-col [&_.p-stepper-separator]:hidden'
-          },
-          contentWrapper: {
-            class: 'flex flex-1 bg-third flex-col !h-full w-full min-h-0 overflow-hidden'
-          },
-          content: {
-            class: 'flex-1 flex flex-col bg-third w-full h-full min-h-0 overflow-hidden'
-          }
-        }">
+        <p-step-panel [value]="0" [pt]="ClassicStepper.ptStepPanel">
           <ng-template #content let-activateCallback="activateCallback">
             <div class="flex-1 overflow-y-auto w-full flex flex-col items-center justify-start p-2">
               <book-details-form/>
@@ -45,17 +24,7 @@
           </ng-template>
         </p-step-panel>
 
-        <p-step-panel [value]="1" [pt]="{
-          root: {
-            class: 'flex bg-black flex-col h-full w-full min-h-0 [&_.p-motion]:!bg-third [&_.p-motion]:h-full [&_.p-motion]:flex [&_.p-motion]:flex-col [&_.p-stepper-separator]:hidden'
-          },
-          contentWrapper: {
-            class: 'flex flex-1 bg-third flex-col !h-full w-full min-h-0 overflow-hidden'
-          },
-          content: {
-            class: 'flex-1 flex flex-col w-full h-full min-h-0 overflow-hidden'
-          }
-        }">
+        <p-step-panel [value]="1" [pt]="ClassicStepper.ptStepPanel">
           <ng-template #content let-activateCallback="activateCallback">
             <div class="flex-1 overflow-y-auto w-full flex flex-col items-center justify-start p-2">
               <book-author-form/>
@@ -64,8 +33,26 @@
         </p-step-panel>
 
       </p-step-panels>
-      <div class="pt-1 flex justify-end flex-none w-full bg-third border-t border-secondary">
-        <classic-button [label]="'Next →'"></classic-button>
+      <div class="pt-1 flex w-full bg-third border-t border-secondary"
+           [style.justify-content]="currentStep >= 1 ? 'space-between' : 'flex-end'">
+
+        @if(currentStep >= 1) {
+          <p-button
+            [pt]="ClassicButtonComponent.pt"
+            (onClick)="prev()"
+            label="Précedent"
+            icon="pi pi-arrow-left !text-xs">
+          </p-button>
+        }
+
+        <p-button
+          [pt]="ClassicButtonComponent.pt"
+          (onClick)="next()"
+          [label]="'Suivant'"
+          icon="pi pi-arrow-right !text-xs"
+          iconPos="right">
+        </p-button>
+
       </div>
     </p-stepper>
   </div>
