@@ -1,5 +1,5 @@
-<form class="pt-5 h-full flex w-full">
-  <div class="flex md:flex-row md:items-start p-1 justify-end  items-center flex-col w-full">
+<form class="pt-5 flex w-full">
+  <div class="flex md:flex-row md:items-start p-1 justify-end  items-center flex-col w-full gap-6">
 
     <div class="flex flex-col justify-center items-center self-stretch flex-2 gap-6 flex-2">
 
@@ -9,12 +9,16 @@
       </div>
 
       <div class="flex md:flex-row flex-col  items-center gap-5">
-<!--        <input-text [formField]="BookDetailsForm.title" [label]="'Titre'" [submitted]="hasSubmitted"></input-text>-->
-<!--        <input-text [formField]="BookDetailsForm.isbn" [label]="'ISBN'" [submitted]="hasSubmitted"></input-text>-->
+        <input-number [formField]="BookDetailsForm.pages" [label]="'Pages'" [submitted]="hasSubmitted"></input-number>
+        <input-number [formField]="BookDetailsForm.price" [label]="'Price'" [submitted]="hasSubmitted"></input-number>
+      </div>
+
+      <div class="flex md:flex-row flex-col  items-center gap-5">
+        <input-text [formField]="BookDetailsForm.nuart" [label]="'Nuart'" [submitted]="hasSubmitted"></input-text>
+        <date-picker [formField]="BookDetailsForm.releaseDate" [label]="'Date de sortie'" [submitted]="hasSubmitted"></date-picker>
       </div>
 
       </div>
-
-
+    <upload-image [(selectedFile)]="BookDetailsModel().coverFile" class="w-70 h-80 flex-shrink-0"></upload-image>
   </div>
 </form>

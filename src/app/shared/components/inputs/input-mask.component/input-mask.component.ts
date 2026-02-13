@@ -5,6 +5,7 @@ import {ValidationError} from '@angular/forms/signals';
 import {InputText} from 'primeng/inputtext';
 import {FloatLabel} from 'primeng/floatlabel';
 import {NgxMaskDirective, provideNgxMask} from 'ngx-mask';
+import {FormsModule} from '@angular/forms';
 
 @Component({
   selector: 'input-mask',
@@ -12,33 +13,26 @@ import {NgxMaskDirective, provideNgxMask} from 'ngx-mask';
   imports: [
     InputText,
     FloatLabel,
-    NgxMaskDirective
+    NgxMaskDirective,
+    FormsModule
   ],
   template: `
     <div class="flex flex-col w-full md:w-auto">
       <div class="relative">
         <p-floatlabel [pt]="{root : '!text-white'}">
           <input
-            #inputEl
-            [value]="value()"
-            (input)="value.set(inputEl.value)"
+            pInputText
+            [(ngModel)]="value"
+            [mask]="inputMask()"
+            [dropSpecialCharacters]="true"
+
             [disabled]="disabled()"
             [readonly]="readonly()"
-            [class.invalid]="invalid()"
-            [attr.aria-invalid]="invalid()"
-            (blur)="touched.set(true)"
-            autocomplete="off"
-            [pt]="pt()"
-            [dropSpecialCharacters]="true"
-            [mask]="inputMask()"
-            [validation]="true"
-            pInputText
-            placeholder="99/99/9999"
-          />
+            [pt]="pt()"/>
           <label
             [class]="showError() ? '!text-l-red' : '!text-secondary'"
             class="text-sm">
-            Titre
+            {{ label() }}
           </label>
         </p-floatlabel>
       </div>
@@ -48,6 +42,9 @@ import {NgxMaskDirective, provideNgxMask} from 'ngx-mask';
           class="text-l-red text-xs">
           @if (showError() && hasRequiredError()) {
             Champs requis
+          }
+          @else if(showError()) {
+                {{errors()[0].message}}
           }
         </small>
       </div>
@@ -59,7 +56,6 @@ export class InputMaskComponent {
 
 
   value = model<string>('');
-  touched = model<boolean>(false);
   disabled = input<boolean>(false);
 
   readonly = input<boolean>(false);
@@ -74,10 +70,6 @@ export class InputMaskComponent {
   inputMask = input.required<string>();
 
   showError = computed(() => {
-    for(const e of this.errors())
-    {
-        console.log("erreur", e.kind)
-    }
     return this.invalid() && this.submitted();
   });
 

@@ -15,6 +15,7 @@ export class ClassicStepperPt {
     title: {class:'!text-secondary [[data-p-active=true]_&]:!text-white/50'}
   }
 
+
   public static ptStepPanels : StepPanelsPassThrough =
   {
     root: { class: 'flex-1 flex flex-col w-full bg-third h-full min-h-0 overflow-hidden relative' }

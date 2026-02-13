@@ -1,18 +1,23 @@
 import {Component, signal, input, inject, DestroyRef, afterNextRender} from '@angular/core';
-import {Field, form, FormField, required, min, pattern} from '@angular/forms/signals';
+import { form, FormField, required, min} from '@angular/forms/signals';
 import {FloatLabel} from 'primeng/floatlabel';
-import {InputText} from 'primeng/inputtext';
 import {InputTextComponent} from '../../../inputs/input-text.component/input-text.component';
 import {Observable} from 'rxjs';
 import {InputMaskComponent} from '../../../inputs/input-mask.component/input-mask.component';
+import {IsbnValidation} from '../../../../validations/isbn-validation';
+import {InputNumberComponent} from '../../../inputs/input-number.component/input-number.component';
+import {FormsModule} from '@angular/forms';
+import {ClassicDatePickerPt} from '../../../../prime-ng/date-picker/classic-date-picker/classic-date-picker.pt';
+import {DatePickerComponent} from '../../../inputs/date-picker.component/date-picker.component';
+import {UploadImageComponent} from '../../../upload-image.component/upload-image.component';
 
 interface IBookDetailsForm {
   title: string;
   isbn: string;
-  price: number;
-  pages: number;
+  price: number | null;
+  pages: number | null;
   releaseDate: Date | null;
-  nuart: string | null;
+  nuart: string;
   coverFile: File | null;
 }
 
@@ -20,12 +25,13 @@ interface IBookDetailsForm {
 @Component({
   selector: 'book-details-form',
   imports: [
-    FloatLabel,
     FormField,
-    Field,
-    InputText,
     InputTextComponent,
-    InputMaskComponent
+    InputMaskComponent,
+    InputNumberComponent,
+    FormsModule,
+    DatePickerComponent,
+    UploadImageComponent
   ],
   templateUrl: './book-details.form.component.html',
   styleUrl: './book-details.form.component.scss',
@@ -37,10 +43,10 @@ export class BookDetailsFormComponent {
   BookDetailsModel = signal<IBookDetailsForm>({
     title: '',
     isbn: '',
-    price : 0,
-    pages : 0,
+    price : null,
+    pages : null,
     releaseDate: null,
-    nuart : null,
+    nuart : '',
     coverFile: null,
   });
 
@@ -48,37 +54,35 @@ export class BookDetailsFormComponent {
   {
     required(schemaPath.title);
     required(schemaPath.isbn);
+    IsbnValidation.IsValidIsbn(schemaPath.isbn);
     required(schemaPath.pages);
     required(schemaPath.price);
-    min(schemaPath.price,1);
-    min(schemaPath.pages,1);
+    min(schemaPath.price,1, {message : "Le prix doit être supérieur à 1€"});
+    min(schemaPath.pages,1, {message : "Le prix doit être supérieur à 1€"});
+    required(schemaPath.releaseDate);
   });
 
   hasSubmitted = false;
   submitTrigger = input.required<Observable<number>>();
   stepIndex = input.required<number>();
 
+    constructor() {
+      const destroyRef = inject(DestroyRef);
 
-
-  constructor() {
-    const destroyRef = inject(DestroyRef);
-
-    afterNextRender(() => {
-      const sub = this.submitTrigger().subscribe(targetStep => {
-        if (targetStep === this.stepIndex()) {
-          this.onSubmit();
-        }
+      afterNextRender(() => {
+        const sub = this.submitTrigger().subscribe(targetStep => {
+          if (targetStep === this.stepIndex()) {
+            this.onSubmit();
+          }
+        });
+        destroyRef.onDestroy(() => sub.unsubscribe());
       });
-      destroyRef.onDestroy(() => sub.unsubscribe());
-    });
-  }
+    }
 
-  public onSubmit(): boolean {
-      this.hasSubmitted = true;
-      return this.hasSubmitted;
+    public onSubmit(): boolean {
+        this.hasSubmitted = true;
+        return this.hasSubmitted;
+    }
 
-  }
-
-
-
-  }
+  protected readonly ClassicDatePickerPt = ClassicDatePickerPt;
+}
