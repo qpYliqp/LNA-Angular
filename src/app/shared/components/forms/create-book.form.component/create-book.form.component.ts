@@ -6,6 +6,8 @@ import {ClassicButtonPt} from '../../../prime-ng/buttons/classic-button/classic-
 import {BookDetailsFormComponent} from './book-details.form.component/book-details.form.component';
 import {BookAuthorFormComponent} from './book-author.form.component/book-author.form.component';
 import {Subject} from 'rxjs';
+import {BookMarketingFormComponent} from './book-marketing.form.component/book-marketing.form.component';
+import {CreateBookService} from './services/create-book.service';
 
 @Component({
   selector: 'create-book-form',
@@ -16,12 +18,12 @@ import {Subject} from 'rxjs';
     StepPanels,
     StepPanel,
     Button,
-    ClassicButtonPt,
     BookDetailsFormComponent,
-    BookAuthorFormComponent
+    BookMarketingFormComponent
   ],
   templateUrl: './create-book.form.component.html',
   styleUrl: './create-book.form.component.scss',
+  providers: [CreateBookService],
 })
 export class CreateBookFormComponent {
 
@@ -31,6 +33,12 @@ export class CreateBookFormComponent {
   next()
   {
     this.submitSignal.next(this.currentStep);
+  }
+
+  handleSubmitResult(result: { step: number; valid: boolean }) {
+    if (result.valid && result.step === this.currentStep) {
+      this.currentStep++;
+    }
   }
 
   prev()

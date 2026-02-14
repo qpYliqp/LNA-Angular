@@ -7,43 +7,7 @@ import {InputText} from 'primeng/inputtext';
 
 @Component({
   selector: 'input-text',
-  template: `
-    <div class="flex flex-col w-full md:w-auto">
-      <div class="relative">
-        <p-floatlabel [pt]="{root : '!text-white'}">
-          <input
-            #inputEl
-            [value]="value()"
-            (input)="value.set(inputEl.value)"
-            [disabled]="disabled()"
-            [readonly]="readonly()"
-            [class.invalid]="invalid()"
-            [attr.aria-invalid]="invalid()"
-            (blur)="touched.set(true)"
-            autocomplete="off"
-            [pt]="pt()"
-            pInputText/>
-          <label
-            [class]="showError() ? '!text-l-red' : '!text-secondary'"
-            class="text-sm">
-            {{label()}}
-          </label>
-        </p-floatlabel>
-      </div>
-      <div class="h-6 flex justify-end items-start">
-        <small
-          [class]="invalid() ? 'opacity-100' : 'opacity-0'"
-          class="text-l-red text-xs">
-          @if (showError() && hasRequiredError()) {
-            Champs requis
-          }
-          @else if(showError()) {
-            {{errors()[0].message}}
-          }
-        </small>
-      </div>
-    </div>
-  `,
+  templateUrl: 'input-text.component.html',
   imports: [
     FloatLabel,
     InputText

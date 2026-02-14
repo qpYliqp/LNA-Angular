@@ -4,9 +4,8 @@ import {SchemaPath, validate} from '@angular/forms/signals';
 
 export class IsbnValidation {
 
-  static IsValidIsbn(path: SchemaPath<string>, options?: {message?: string}) {
+  static IsValidIsbn(path: SchemaPath<string | null>, options?: {message?: string}) {
     validate(path, ({value}) => {
-      console.log(value())
       if (!IsbnValidation.validateIsbn(value())) {
         return {
           kind: 'isbn',
@@ -19,8 +18,7 @@ export class IsbnValidation {
 
 
 
-  private static validateIsbn(isbn: string): boolean {
-    console.log(isbn.length);
+  private static validateIsbn(isbn: string | null): boolean {
     if (!isbn) return false;
     if (isbn.length === 13) {
 

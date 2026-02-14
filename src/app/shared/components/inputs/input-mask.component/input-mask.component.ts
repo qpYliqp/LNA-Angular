@@ -16,40 +16,7 @@ import {FormsModule} from '@angular/forms';
     NgxMaskDirective,
     FormsModule
   ],
-  template: `
-    <div class="flex flex-col w-full md:w-auto">
-      <div class="relative">
-        <p-floatlabel [pt]="{root : '!text-white'}">
-          <input
-            pInputText
-            [(ngModel)]="value"
-            [mask]="inputMask()"
-            [dropSpecialCharacters]="true"
-
-            [disabled]="disabled()"
-            [readonly]="readonly()"
-            [pt]="pt()"/>
-          <label
-            [class]="showError() ? '!text-l-red' : '!text-secondary'"
-            class="text-sm">
-            {{ label() }}
-          </label>
-        </p-floatlabel>
-      </div>
-      <div class="h-6 flex justify-end items-start">
-        <small
-          [class]="invalid() ? 'opacity-100' : 'opacity-0'"
-          class="text-l-red text-xs">
-          @if (showError() && hasRequiredError()) {
-            Champs requis
-          }
-          @else if(showError()) {
-                {{errors()[0].message}}
-          }
-        </small>
-      </div>
-    </div>
-  `,
+  templateUrl: 'input-mask.component.html',
   styleUrl: './input-mask.component.scss',
 })
 export class InputMaskComponent {

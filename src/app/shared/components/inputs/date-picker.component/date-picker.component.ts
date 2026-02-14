@@ -15,37 +15,7 @@ import {ValidationError} from '@angular/forms/signals';
     ReactiveFormsModule,
     FormsModule
   ],
-  template: `<div class="flex flex-col w-full md:w-auto">
-    <div class="relative">
-      <p-floatlabel>
-        <p-datePicker
-          #inputEl
-          [(ngModel)]="value"
-          [pt]="ClassicDatePickerPt.pt"
-          appendTo="body"
-          class="bg-third text-white border-none outline-none max-w-50"
-          name="date"
-          required/>
-        <label
-          [class]="showError() ? '!text-l-red' : '!text-secondary'"
-          class="text-sm">
-          {{ label() }}
-        </label>
-      </p-floatlabel>
-    </div>
-    <div class="h-6 flex justify-end items-start">
-      <small
-        [class]="invalid() ? 'opacity-100' : 'opacity-0'"
-        class="text-l-red text-xs">
-        @if (showError() && hasRequiredError()) {
-          Champs requis
-        }
-        @else if(showError()) {
-          {{errors()[0].message}}
-        }
-      </small>
-    </div>
-  </div>`,
+  templateUrl: 'date-picker.component.html',
   styleUrl: './date-picker.component.scss',
 })
 export class DatePickerComponent {

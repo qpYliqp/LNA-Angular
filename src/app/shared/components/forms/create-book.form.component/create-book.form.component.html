@@ -1,17 +1,17 @@
 <div class="fixed top-0 left-0 w-screen h-screen bg-third/70 flex justify-center items-center z-[2] p-2 md:p-0">
 
-  <div class="bg-third border-secondary border-2 p-2 md:p-5 w-full h-full lg:w-[55rem] lg:h-[40rem] flex flex-col rounded-sm shadow-2xl">
+  <div class="bg-third border-secondary border-2 p-2 md:p-5 w-full h-full xl:w-[55rem] xl:h-[40rem] flex flex-col rounded-sm">
 
     <div class="flex flex-row items-center justify-between">
       <p class="!text-white/50 text-lg">Créer un livre</p>
       <i class="pi text-xl pi-times text-secondary hover:cursor-pointer hover:text-l-red/60"></i>
     </div>
-    <p-stepper [(value)]="currentStep" [pt]="ClassicStepper.ptStepper">
+    <p-stepper [(value)]="currentStep" [pt]="ClassicStepper.ptStepper" [linear]="true">
 
       <p-step-list>
         <p-step [value]="0" [pt]="ClassicStepper.ptStep"
         >Détails</p-step>
-        <p-step [value]="1" [pt]="ClassicStepper.ptStep">Auteurs</p-step>
+        <p-step [value]="1" [pt]="ClassicStepper.ptStep">Marketing</p-step>
       </p-step-list>
 
       <p-step-panels [pt]="ClassicStepper.ptStepPanels">
@@ -19,7 +19,7 @@
         <p-step-panel [value]="0" [pt]="ClassicStepper.ptStepPanel">
           <ng-template #content let-activateCallback="activateCallback">
             <div class="flex-1 overflow-y-auto w-full flex flex-col items-center justify-start p-2">
-              <book-details-form [submitTrigger]="submitSignal" [stepIndex]="0"/>
+              <book-details-form class="w-full" [submitTrigger]="submitSignal" [stepIndex]="0" (submitResult)="handleSubmitResult($event)"/>
             </div>
           </ng-template>
         </p-step-panel>
@@ -27,7 +27,7 @@
         <p-step-panel [value]="1" [pt]="ClassicStepper.ptStepPanel">
           <ng-template #content let-activateCallback="activateCallback">
             <div class="flex-1 overflow-y-auto w-full flex flex-col items-center justify-start p-2">
-              <book-author-form/>
+              <book-marketing-form class="w-full" [submitTrigger]="submitSignal" [stepIndex]="1" (submitResult)="handleSubmitResult($event)"/>
             </div>
           </ng-template>
         </p-step-panel>

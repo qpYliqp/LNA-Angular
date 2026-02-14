@@ -1,18 +1,24 @@
 <div class="flex flex-col w-full md:w-auto">
   <div class="relative">
-    <p-floatlabel>
-      <p-datePicker
+    <p-floatlabel [pt]="{root : '!text-white'}">
+      <textarea
         #inputEl
-        [(ngModel)]="value"
-        [pt]="ClassicDatePickerPt.pt"
-        appendTo="body"
-        class="bg-third text-white border-none outline-none max-w-50"
-        name="date"
-        required/>
+        [value]="value()"
+        (input)="value.set(inputEl.value)"
+        [disabled]="disabled()"
+        [readonly]="readonly()"
+        [class.invalid]="invalid()"
+        [attr.aria-invalid]="invalid()"
+        (blur)="touched.set(true)"
+        autocomplete="off"
+        style="resize: none"
+        fluid
+        [pt]="pt()"
+        pTextarea></textarea>
       <label
         [class]="showError() ? '!text-l-red' : '!text-secondary'"
         class="text-sm">
-        {{ label() }}
+        {{label()}}
       </label>
     </p-floatlabel>
   </div>
