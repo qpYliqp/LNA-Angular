@@ -1,11 +1,9 @@
 import {afterNextRender, Component, DestroyRef, inject, input, output, signal} from '@angular/core';
-import {FloatLabel} from 'primeng/floatlabel';
 import {form, FormField, required} from '@angular/forms/signals';
 import {Observable} from 'rxjs';
 import {CreateBookService} from '../services/create-book.service';
-import {Textarea} from 'primeng/textarea';
-import {InputTextComponent} from '../../../inputs/input-text.component/input-text.component';
 import {InputAreaComponent} from '../../../inputs/input-area.component/input-area.component';
+
 interface IBookMarketingForm {
   summary: string | null;
   marketing: string | null;
@@ -25,19 +23,13 @@ interface IBookMarketingForm {
 })
 export class BookMarketingFormComponent {
   BookMarketingModel = signal<IBookMarketingForm>({
-    summary: null,
+    summary: "null",
     marketing: null,
     hook : null,
     note : null,
   });
 
-  BookMarketingForm = form(this.BookMarketingModel, (schemaPath) =>
-  {
-    required(schemaPath.summary);
-    required(schemaPath.marketing);
-    required(schemaPath.hook);
-    required(schemaPath.note);
-  });
+  BookMarketingForm = form(this.BookMarketingModel);
 
   hasSubmitted = false;
   submitTrigger = input.required<Observable<number>>();

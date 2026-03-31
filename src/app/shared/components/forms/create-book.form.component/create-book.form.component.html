@@ -9,9 +9,9 @@
     <p-stepper [(value)]="currentStep" [pt]="ClassicStepper.ptStepper" [linear]="true">
 
       <p-step-list>
-        <p-step [value]="0" [pt]="ClassicStepper.ptStep"
-        >Détails</p-step>
+        <p-step [value]="0" [pt]="ClassicStepper.ptStep">Détails</p-step>
         <p-step [value]="1" [pt]="ClassicStepper.ptStep">Marketing</p-step>
+        <p-step [value]="2" [pt]="ClassicStepper.ptStep">Auteurs</p-step>
       </p-step-list>
 
       <p-step-panels [pt]="ClassicStepper.ptStepPanels">
@@ -28,6 +28,15 @@
           <ng-template #content let-activateCallback="activateCallback">
             <div class="flex-1 overflow-y-auto w-full flex flex-col items-center justify-start p-2">
               <book-marketing-form class="w-full" [submitTrigger]="submitSignal" [stepIndex]="1" (submitResult)="handleSubmitResult($event)"/>
+            </div>
+          </ng-template>
+        </p-step-panel>
+
+
+        <p-step-panel [value]="2" [pt]="ClassicStepper.ptStepPanel">
+          <ng-template #content let-activateCallback="activateCallback">
+            <div class="flex-1 overflow-y-auto w-full flex flex-col items-center justify-start p-2">
+              <book-author-form class="w-full" [submitTrigger]="submitSignal" [stepIndex]="2" (submitResult)="handleSubmitResult($event)"/>
             </div>
           </ng-template>
         </p-step-panel>

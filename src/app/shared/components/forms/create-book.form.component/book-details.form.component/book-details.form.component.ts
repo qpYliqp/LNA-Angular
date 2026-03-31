@@ -6,7 +6,6 @@ import {InputMaskComponent} from '../../../inputs/input-mask.component/input-mas
 import {IsbnValidation} from '../../../../validations/isbn-validation';
 import {InputNumberComponent} from '../../../inputs/input-number.component/input-number.component';
 import {FormsModule} from '@angular/forms';
-import {ClassicDatePickerPt} from '../../../../prime-ng/date-picker/classic-date-picker/classic-date-picker.pt';
 import {DatePickerComponent} from '../../../inputs/date-picker.component/date-picker.component';
 import {UploadImageComponent} from '../../../inputs/upload-image.component/upload-image.component';
 import {CreateBookService} from '../services/create-book.service';

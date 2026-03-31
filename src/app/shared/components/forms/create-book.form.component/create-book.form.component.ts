@@ -19,7 +19,8 @@ import {CreateBookService} from './services/create-book.service';
     StepPanel,
     Button,
     BookDetailsFormComponent,
-    BookMarketingFormComponent
+    BookMarketingFormComponent,
+    BookAuthorFormComponent
   ],
   templateUrl: './create-book.form.component.html',
   styleUrl: './create-book.form.component.scss',
@@ -28,6 +29,7 @@ import {CreateBookService} from './services/create-book.service';
 export class CreateBookFormComponent {
 
   currentStep: number = 0;
+  lastStep: number = 2;
   submitSignal = new Subject<number>();
 
   next()
@@ -36,8 +38,10 @@ export class CreateBookFormComponent {
   }
 
   handleSubmitResult(result: { step: number; valid: boolean }) {
-    if (result.valid && result.step === this.currentStep) {
+    if (result.valid && result.step === this.currentStep && this.currentStep !== this.lastStep) {
       this.currentStep++;
+    }else if(result.valid && result.step === this.currentStep && this.currentStep === this.lastStep) {
+      console.log("envoie du formulaire");
     }
   }
 

@@ -11,7 +11,6 @@ import {ClassicInputNumberPt} from '../../../prime-ng/inputs/classic-input-numbe
   selector: 'input-number',
   imports: [
     FloatLabel,
-    InputText,
     InputNumber,
     FormsModule
   ],

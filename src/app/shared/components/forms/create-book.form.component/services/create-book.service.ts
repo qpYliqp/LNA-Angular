@@ -14,6 +14,7 @@ export interface PostBook
   marketing : string | null;
   hook : string | null;
   note : string | null;
+  authorsId : number[];
 }
 
 @Injectable()
@@ -44,6 +45,7 @@ export class CreateBookService {
       marketing:null,
       hook:null,
       note:null,
+      authorsId : [],
     };
   }
 }

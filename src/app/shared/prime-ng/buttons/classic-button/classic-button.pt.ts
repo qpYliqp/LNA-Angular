@@ -21,7 +21,7 @@ export class ClassicButtonPt {
   onClick = output();
 
   public static pt: ButtonPassThrough = {
-    root: '!inline-flex !items-center !justify-center !bg-third hover:!bg-third/30 hover:!border-secondary !text-white/60 !rounded-sm !px-6 !py-3 !border-1 !border-fourth transition-colors',
+    root: '!inline-flex !items-center !justify-center !bg-third hover:!bg-third/30 hover:!border-secondary !text-white/60 !rounded-sm !px-6 !py-3 !border-1 !border-fourth transition-colors focus:!outline-none focus:!border-secondary',
     label: '!font-medium'
   };
 
